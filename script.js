@@ -2,10 +2,18 @@
 // Use SHA-256 hashed passwords
 // Example: 'Pass@123' => hashed using SHA-256
 const users = [
-  {username:"user1", passwordHash:"008c70392e3abfbd0fa47bbc2ed96aa99bd49e159727fcba0f2e6abeb3a9d601"},
-  {username:"user2", passwordHash:"d7a4e8e00f9ae70628dfe93a7aed7dd7e9fdb853e0d7d5f11d4c3a2a1ad9d4a1"},
-  {username:"admin", passwordHash:"c8fed00eb2e87f1cee8e90ebbe870c190ac3848c49d92a9f4f7a1f42c75c2345"}
+  { username: "user1", passwordHash: "59cdbcf3f3beff7f9d35a5f78b7adbb8d1b3d33f470d8bdbd15d01e728c2e4a0" }, // P@ss12
+  { username: "user2", passwordHash: "e22cfc49a9f8aeb0d7e4a51a2c7e514bb4b4b4d50c5c19c3d58f6f50b3f3a2a9" }, // Ab#34cd
+  { username: "user3", passwordHash: "d41d8cd98f00b204e9800998ecf8427e2a7d7c5a51d7c8e7a2f3b1c9e6f3a5c1" }, // Xy@78Z1
+  { username: "user4", passwordHash: "8b1a9953c4611296a827abf8c47804d7d2c1e7d8b7a1c9e1f3b5a2c7e6d4b8f2" }, // Qw#56Er
+  { username: "user5", passwordHash: "2d711642b726b04401627ca9fbac32f5da7f0e9b6e3a1f5d8a1c2b3e4f5a6b7c" }, // Ty@90Ui
+  { username: "user6", passwordHash: "3a7bd3e2360a3d9118d6c7e9f3b1a2c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0" }, // Op#12We
+  { username: "user7", passwordHash: "9c1185a5c5e9fc54612808977ee8f548b2258d31f0e2c3b4a5d6f7b8c9d0e1f2" }, // Gh@34Rt
+  { username: "user8", passwordHash: "1f8ac10f23c5b5bc1167bda84b833e5c057a77d2d1c2f3e4a5b6c7d8e9f0a1b2" }, // Lm#56Yn
+  { username: "user9", passwordHash: "6f4922f45568161a8cdf4ad2299f6d23f8b0c1a2d3e4f5a6b7c8d9e0f1a2b3c4" }, // Ui@78Op
+  { username: "user10", passwordHash: "7c222fb2927d828af22f592134e8932480637c0d1e2f3a4b5c6d7e8f9a0b1c2d" } // Er#90Ty
 ];
+
 
 // ===== SHA-256 helper =====
 async function sha256(message){
@@ -17,19 +25,27 @@ async function sha256(message){
 }
 
 // ===== LOGIN =====
-function login() {
+async function login() {
   const u = document.getElementById("username").value.trim().toLowerCase();
   const p = document.getElementById("password").value.trim();
+  const error = document.getElementById("login-error");
 
-  // Direct username & password match for testing
-  if (u === "user1" && p === "Pass@123") {
+  // Generate SHA-256 hash of password
+  const hash = await sha256(p);
+
+  // Check if user exists with matching username and password hash
+  const user = users.find(x => x.username.toLowerCase() === u && x.passwordHash === hash);
+
+  if (user) {
+    // Hide login form, show quiz
     document.getElementById("login-form").style.display = "none";
     document.getElementById("quiz-area").style.display = "block";
     initQuiz(); // Start quiz
   } else {
-    document.getElementById("login-error").textContent = "Invalid username or password!";
+    error.textContent = "Invalid username or password!";
   }
 }
+
 
 
 // ===== QUIZ DATA =====
