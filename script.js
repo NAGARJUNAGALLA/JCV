@@ -17,21 +17,20 @@ async function sha256(message){
 }
 
 // ===== LOGIN =====
-async function login(){
+function login() {
   const u = document.getElementById("username").value.trim().toLowerCase();
   const p = document.getElementById("password").value.trim();
-  const error = document.getElementById("login-error");
-  const hash = await sha256(p);
 
-  const user = users.find(x => x.username.toLowerCase() === u && x.passwordHash === hash);
-  if(user){
-    document.getElementById("login-form").style.display="none";
-    document.getElementById("quiz-area").style.display="block";
-    initQuiz();
+  // Direct username & password match for testing
+  if (u === "user1" && p === "Pass@123") {
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("quiz-area").style.display = "block";
+    initQuiz(); // Start quiz
   } else {
-    error.textContent = "Invalid username or password!";
+    document.getElementById("login-error").textContent = "Invalid username or password!";
   }
 }
+
 
 // ===== QUIZ DATA =====
 const QUIZ_TITLE = "APTET ENGLISH Paper 1 : Model Paper 1";
