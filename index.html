@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Secure Quiz</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+
+<!-- LOGIN FORM -->
+<div id="login-form" class="centered">
+  <h3>Login to Start Quiz</h3>
+  <input type="text" id="userName" placeholder="Username" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- QUIZ AREA -->
+<div id="quiz-area" style="display:none;">
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div id="quiz-title">Quiz</div>
+      <div>⏱️ <span id="timer"></span></div>
+      <i class="fa-solid fa-expand full-icon" title="Fullscreen" onclick="toggleFullscreen()"></i>
+    </div>
+
+    <div class="quiz-body">
+      <div class="stats">
+        <span id="answered">Answered: 0</span>
+        <span id="not-answered">Not answered: 0</span>
+      </div>
+
+      <button class="toggle-nav-btn" onclick="toggleNav()">🔽 Show/Hide Questions</button>
+      <div class="question-nav" id="question-nav"></div>
+      <h3 id="quiz-title"></h3>
+      <div id="question-container"></div>
+      <div id="result-section" class="hidden"></div>
+    </div>
+
+    <div class="quiz-footer">
+      <button onclick="prevQuestion()">Previous</button>
+      <button onclick="submitQuiz()">Submit</button>
+      <button onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
