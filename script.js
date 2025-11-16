@@ -2,8 +2,8 @@
 // Use SHA-256 hashed passwords
 // Example: 'Pass@123' => hashed using SHA-256
 const users = [
-  {username:"user1", passwordHash:"a8b64babd1c82f0f49a1c1c2c539931d586998d65778804b7f4f2e0e5c10f6b2"},
-  {username:"user2", passwordHash:"b2f5ff47436671b6e533d8dc3614845d8c79845e7b5c15e6e0a4f9bb7d5a4b4c"},
+  {username:"user1", passwordHash:"008c70392e3abfbd0fa47bbc2ed96aa99bd49e159727fcba0f2e6abeb3a9d601"},
+  {username:"user2", passwordHash:"d7a4e8e00f9ae70628dfe93a7aed7dd7e9fdb853e0d7d5f11d4c3a2a1ad9d4a1"},
   {username:"admin", passwordHash:"c8fed00eb2e87f1cee8e90ebbe870c190ac3848c49d92a9f4f7a1f42c75c2345"}
 ];
 
