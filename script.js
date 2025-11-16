@@ -16,14 +16,20 @@ const users = [
 
 
 // ===== SHA-256 helper =====
-async function sha256(message){
+async function sha256(message) {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   return hashHex;
 }
 
+(async () => {
+  const passwords = ["P@ss12","Ab#34cd","Xy@78Z1","Qw#56Er","Ty@90Ui","Op#12We","Gh@34Rt","Lm#56Yn","Ui@78Op","Er#90Ty"];
+  for(let i=0;i<passwords.length;i++){
+    console.log(`user${i+1} : ${await sha256(passwords[i])}`);
+  }
+})();
 // ===== LOGIN =====
 async function login() {
   const u = document.getElementById("username").value.trim().toLowerCase();
